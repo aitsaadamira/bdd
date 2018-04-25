@@ -56,7 +56,7 @@ if __name__ == "__main__" :
     file.write("\n\n\n\n********************************************************************************\n")
     file.write(">>> Date time : " + str(datetime.now().strftime('%Y-%m-%d %H:%M:%S')) + "\n")
     file.write(">>> Part : "+ str(part) + " \n")
-    file.write(">>> Part : "+ str(part) + " \n")
+    file.write(">>> 50/50 \n")
     
     ###########################################################################
     #########                 Training and Test Set                   #########
