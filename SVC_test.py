@@ -8,14 +8,15 @@ Created on Tue Apr 24 23:41:07 2018
 
 
 from pyspark import SparkContext, SparkConf
-from pyspark.ml.classification import MultilayerPerceptronClassifier, LinearSVC
-from pyspark.ml.evaluation import MulticlassClassificationEvaluator
+from pyspark.ml.classification import LinearSVC
 from pyspark.sql import SparkSession
 from pyspark.ml.feature import HashingTF, IDF, Tokenizer
 from datetime import datetime
 
 
 if __name__ == "__main__":
+    
+    part = 1
     
     ###########################################################################
     #########                      Spark Context                      #########
@@ -39,7 +40,7 @@ if __name__ == "__main__":
     
         
     #test_set
-    test_text = sc.textFile("data/test_clean.csv")
+    test_text = sc.textFile("data/test_clean"+ str(part) +".csv")
     test_df = test_text.map(lambda x : (0,x)).toDF(["nothing" , "sentence"]) #(0,x) = bricolage
     
     tokenizer_test = Tokenizer(inputCol="sentence", outputCol="words")
@@ -107,6 +108,7 @@ if __name__ == "__main__":
     file = open("resultat_ml.txt","a")
     file.write("\n\n\n\n********************************************************************************\n")
     file.write(">>> Date time : " + str(datetime.now().strftime('%Y-%m-%d %H:%M:%S')) + "\n")
+    file.write(">>> Part : "+ part + " \n")
     
     
     ###########################################################################
@@ -121,7 +123,7 @@ if __name__ == "__main__":
     print("\n================== Training ===================\n")
     
     #training model SVC
-    trainer_SVC = LinearSVC(maxIter=10, regParam=0.1)
+    trainer_SVC = LinearSVC(maxIter=100, regParam=0.1)
     model_linear_svc = trainer_SVC.fit(rescaledData)
     print("Done : Linear_SVC training")
     
