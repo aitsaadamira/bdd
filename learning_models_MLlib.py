@@ -39,7 +39,8 @@ def test_set(test_file, idf):
 
 
 if __name__ == "__main__" :
-
+    
+    part = 1
     ###########################################################################
     #########                      Spark Context                      #########
     
@@ -52,6 +53,7 @@ if __name__ == "__main__" :
     file = open("resultat_MLlib.txt","a")
     file.write("\n\n\n\n********************************************************************************\n")
     file.write(">>> Date time : " + str(datetime.now().strftime('%Y-%m-%d %H:%M:%S')) + "\n")
+    file.write(">>> Part : "+ str(part) + " \n")
     
     
     ###########################################################################
@@ -64,7 +66,7 @@ if __name__ == "__main__" :
     training = training_idf[0]
     idf = training_idf[1]
     
-    test_file = "data/test_clean.csv"
+    test_file = "data/test_clean"+ str(part) + ".csv"
     test = test_set(test_file, idf)
     
     print("\nDone : Tf-IDF training and test sets")
