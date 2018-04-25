@@ -40,7 +40,7 @@ if __name__ == "__main__":
     
         
     #test_set
-    test_text = sc.textFile("data/test_clean"+ ".csv")
+    test_text = sc.textFile("data/test_clean"+ str(part) + ".csv")
     test_df = test_text.map(lambda x : (0,x)).toDF(["nothing" , "sentence"]) #(0,x) = bricolage
     
     tokenizer_test = Tokenizer(inputCol="sentence", outputCol="words")
