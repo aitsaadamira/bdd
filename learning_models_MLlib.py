@@ -13,6 +13,7 @@ from pyspark.mllib.regression import LabeledPoint
 from pyspark.mllib.tree import DecisionTree
 from datetime import datetime
 
+#/home/mira/TAF/projet_BDD/code_BDD/test_petit_jeu_de_donnees
 
 def training_set(pos_file, neg_file):
     text_negative = sc.textFile(neg_file)
@@ -21,7 +22,7 @@ def training_set(pos_file, neg_file):
     train_text = text_negative.union(text_positive)
     train_labels = text_negative.map(lambda x: 0.0).union(text_positive.map(lambda x: 1.0))
     
-    tf = HashingTF(numFeatures=10000).transform(train_text.map(lambda x : x))
+    tf = HashingTF().transform(train_text.map(lambda x : x))
     idf = IDF().fit(tf)
     train_tfidf = idf.transform(tf)
     
@@ -116,7 +117,7 @@ if __name__ == "__main__" :
     test_text = text_negative.union(text_positive)
     test_tlabels = text_negative.map(lambda x: 0.0).union(text_positive.map(lambda x: 1.0))
     
-    tf_test = HashingTF(numFeatures=10000).transform(test_text.map(lambda x : x))
+    tf_test = HashingTF().transform(test_text.map(lambda x : x))
     
     tfidf_test = idf.transform(tf_test)
     
