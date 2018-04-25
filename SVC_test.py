@@ -39,7 +39,7 @@ if __name__ == "__main__":
     ###########################################################################
     #########        Tokenizing Training and Test Set                #########
     
-        
+    
     #test_set
     test_text = sc.textFile("data/test_clean"+ str(part) +".csv")
     test_df = test_text.map(lambda x : (0,x)).toDF(["nothing" , "sentence"]) #(0,x) = bricolage
