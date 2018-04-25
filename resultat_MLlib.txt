@@ -51,3 +51,41 @@
 == Results on labeled data (Brexit) ==
 
 -> ACCURACY DT ENTROPY : 0.5378564405113078
+
+
+
+
+********************************************************************************
+>>> Date time : 2018-04-25 19:21:30
+
+
+
+
+********************************************************************************
+>>> Date time : 2018-04-25 19:24:53
+
+
+
+
+********************************************************************************
+>>> Date time : 2018-04-25 19:26:22
+
+
+============== DECISION TREE (entropy) ============== 
+
+- Positive : 68598
+- Negative : 31403
+
+== Results on labeled data (Brexit) ==
+
+-> ACCURACY DT ENTROPY : 0.55
+
+
+================ DECISION TREE (gini) =============== 
+
+- Positive : 68598
+- Negative : 31403
+
+== Results on labeled data (Brexit) ==
+
+-> ACCURACY DT GINI : 0.55
