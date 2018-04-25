@@ -1,0 +1,24 @@
+
+
+
+
+********************************************************************************
+>>> Date time : 2018-04-25 17:38:52
+
+
+========================= MLP =========================
+
+- Positive : 2
+- Negative : 9
+
+== Results on labeled data (Brexit) ==
+-> ACCURACY MLP : 0.4424778761061947
+
+
+====================== Linear SVC =====================
+
+- Positive : 6
+- Negative : 5
+
+== Results on labeled data (Brexit) ==
+-> ACCURACY Linear_SVC : 0.56047197640118
