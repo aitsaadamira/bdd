@@ -12,6 +12,7 @@ from pyspark.ml.classification import LinearSVC
 from pyspark.sql import SparkSession
 from pyspark.ml.feature import HashingTF, IDF, Tokenizer
 from datetime import datetime
+import sys
 
 
 if __name__ == "__main__":
