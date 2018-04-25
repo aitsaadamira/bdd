@@ -9,7 +9,7 @@ Created on Tue Apr 24 17:18:02 2018
 from pyspark import SparkContext, SparkConf
 from pyspark.mllib.feature import HashingTF, IDF
 from pyspark.mllib.regression import LabeledPoint
-from pyspark.mllib.classification import NaiveBayes
+#from pyspark.mllib.classification import NaiveBayes
 from pyspark.mllib.tree import DecisionTree
 from datetime import datetime
 
