@@ -104,14 +104,14 @@ if __name__ == "__main__":
     
 
     brexit_positive = sc.textFile("data/brexit_positif_clean.csv")
-    text_negative = sc.textFile("data/brexit_negatif_clean.csv")
+    brexit_negative = sc.textFile("data/brexit_negatif_clean.csv")
     
-    pos_labels = text_positive.map(lambda x : 1.0).zip(text_positive.map(lambda x : x))
-    neg_labels = text_negative.map(lambda x : 0.0).zip(text_negative.map(lambda x : x))
+    pos_labels_brexit = brexit_positive.map(lambda x : 1.0).zip(brexit_positive.map(lambda x : x))
+    neg_labels_brexit = brexit_negative.map(lambda x : 0.0).zip(brexit_negative.map(lambda x : x))
     
-    pos_df = pos_labels.toDF(["label" , "sentence"])
-    neg_df = neg_labels.toDF(["label" , "sentence"])
-    test_df = pos_df.union(neg_df)
+    pos_df_brexit = pos_labels_brexit.toDF(["label" , "sentence"])
+    neg_df_brexit = neg_labels_brexit.toDF(["label" , "sentence"])
+    test_df_brexit = pos_df_brexit.union(neg_df)
     
     tokenizer_test_brexit = Tokenizer(inputCol="sentence", outputCol="words")
     wordsData_test_brexit = tokenizer_test_brexit.transform(test_df)
