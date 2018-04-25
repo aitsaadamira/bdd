@@ -16,7 +16,7 @@ from datetime import datetime
 
 if __name__ == "__main__":
     
-    part = 1
+    part = sys[1]
     
     ###########################################################################
     #########                      Spark Context                      #########

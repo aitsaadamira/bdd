@@ -12,6 +12,7 @@ from pyspark.mllib.regression import LabeledPoint
 #from pyspark.mllib.classification import NaiveBayes
 from pyspark.mllib.tree import DecisionTree
 from datetime import datetime
+import sys
 
 #/home/mira/TAF/projet_BDD/code_BDD/test_petit_jeu_de_donnees
 
@@ -40,7 +41,9 @@ def test_set(test_file, idf):
 
 if __name__ == "__main__" :
     
-    part = ""
+    part = sys[1]
+    
+    
     ###########################################################################
     #########                      Spark Context                      #########
     
