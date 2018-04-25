@@ -107,7 +107,7 @@ if __name__ == "__main__":
     file = open("resultat_ml.txt","a")
     file.write("\n\n\n\n********************************************************************************\n")
     file.write(">>> Date time : " + str(datetime.now().strftime('%Y-%m-%d %H:%M:%S')) + "\n")
-    file.write(">>> Part : "+ part + " \n")
+    file.write(">>> Part : "+ str(part) + " \n")
     
     
     ###########################################################################
