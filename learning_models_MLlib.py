@@ -61,8 +61,8 @@ if __name__ == "__main__" :
 #    "/home/mira/TAF/projet_BDD/code_BDD/train_negatif.csv"
 #    "/home/mira/TAF/projet_BDD/code_BDD/test.csv"
     
-    pos_file = "data/training_positif.csv" #sys.argv[1]
-    neg_file = "data/training_negatif.csv" #sys.argv[2]
+    pos_file = "bdd/data/training_positif.csv" #sys.argv[1]
+    neg_file = "bdd/data/training_negatif.csv" #sys.argv[2]
     
     training_idf = training_set(pos_file, neg_file)
     training = training_idf[0]
@@ -79,20 +79,20 @@ if __name__ == "__main__" :
     
     
     model_bayes = NaiveBayes.train(training)
-    model_bayes.save(sc, "bayes_model_mira.model")
+    model_bayes.save(sc, "bdd/bayes_model_mira.model")
     #save bayes_model
     model_decision_tree_entropy = DecisionTree.trainClassifier(training, categoricalFeaturesInfo={}, impurity="entropy", maxDepth=5, numClasses=2)
-    model_decision_tree_entropy.save(sc, "DT_entropy_model_mira.model")
+    model_decision_tree_entropy.save(sc, "bdd/DT_entropy_model_mira.model")
     #save TR_entropy_model
     model_decision_tree_gini = DecisionTree.trainClassifier(training, categoricalFeaturesInfo={}, impurity="gini", maxDepth=5, numClasses=2)
-    model_decision_tree_gini.save(sc, "DT_gini_model_mira.model")
+    model_decision_tree_gini.save(sc, "bdd/DT_gini_model_mira.model")
     #save TR_gini_model
     
 
     ###########################################################################
     #########                     Model Testing                       #########
     
-    test_file = "data/test.csv" #sys.argv[3]
+    test_file = "bdd/data/test.csv" #sys.argv[3]
     test = test_set(test_file, idf)
     
     ##################
@@ -100,11 +100,11 @@ if __name__ == "__main__" :
     ##################
     
     
-    model_bayes = NaiveBayes.load(sc, "bayes_model_mira.model")
-    model_decision_tree_entropy = DecisionTree.load(sc, "DT_entropy_model_mira.model")
-    model_decision_tree_gini = DecisionTree.load(sc, "DT_gini_model_mira.model")
+    model_bayes = NaiveBayes.load(sc, "bdd/bayes_model_mira.model")
+    model_decision_tree_entropy = DecisionTree.load(sc, "bdd/DT_entropy_model_mira.model")
+    model_decision_tree_gini = DecisionTree.load(sc, "bdd/DT_gini_model_mira.model")
     
-    file = open("resultat_MLlib.txt","a")
+    file = open("bdd/resultat_MLlib.txt","a")
     
     #Bayes
     predictions_bayes = model_bayes.predict(test)
@@ -151,8 +151,8 @@ if __name__ == "__main__" :
     ###########################################################################
     #########           Testing on Brexit Labeled Data                #########
     
-    text_negative = sc.textFile("data/brexit_negatif.csv")
-    text_positive = sc.textFile("data/brexit_positif.csv")
+    text_negative = sc.textFile("bdd/data/brexit_negatif.csv")
+    text_positive = sc.textFile("bdd/data/brexit_positif.csv")
 
     test_text = text_negative.union(text_positive)
     test_tlabels = text_negative.map(lambda x: 0.0).union(text_positive.map(lambda x: 1.0))

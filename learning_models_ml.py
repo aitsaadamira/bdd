@@ -36,8 +36,8 @@ if __name__ == "__main__":
     #########                        Training                         #########
     
     
-    text_positive = sc.textFile("data/training_positif.csv")
-    text_negative = sc.textFile("data/training_negatif.csv")
+    text_positive = sc.textFile("bdd/data/training_positif.csv")
+    text_negative = sc.textFile("bdd/data/training_negatif.csv")
     
     pos_labels = text_positive.map(lambda x: 1.0).zip(text_positive.map(lambda x : x))
     neg_labels = text_negative.map(lambda x: 0.0).zip(text_negative.map(lambda x : x))
@@ -67,13 +67,13 @@ if __name__ == "__main__":
     layers = [num_cols , 500 , 2]
     trainer_MLP = MultilayerPerceptronClassifier(maxIter=100, layers=layers, blockSize=128, seed=1234)
     model_MLP = trainer_MLP.fit(rescaledData)
-    trainer_MLP.save("model_MLP.model")
+    trainer_MLP.save("bdd/model_MLP.model")
     
     
     #training model SVC
     trainer_SVC = LinearSVC(maxIter=10, regParam=0.1)
     model_linear_svc = trainer_SVC.fit(rescaledData)
-    trainer_SVC.save("model_SVC.model")
+    trainer_SVC.save("bdd/model_SVC.model")
     # Print the coefficients and intercept for linearsSVC
     print("Coefficients: " + str(model_linear_svc.coefficients))
     print("Intercept: " + str(model_linear_svc.intercept))
@@ -82,7 +82,7 @@ if __name__ == "__main__":
     ###########################################################################
     #########                           Test                          ######### 
     
-    test_text = sc.textFile("data/test.csv")
+    test_text = sc.textFile("bdd/data/test.csv")
     test_df = test_text.map(lambda x : x).map(lambda x : (0,x)).toDF(["nothing" , "sentence"]) #(0,x) = bricolage
     
     tokenizer_test = Tokenizer(inputCol="sentence", outputCol="words")
@@ -100,10 +100,10 @@ if __name__ == "__main__":
     rescaledData_test.select("features").show()
     
     
-    model_MLP = MultilayerPerceptronClassifier.load("model_MLP.model")
-    model_MVC = LinearSVC.load("model_SVC.model")
+    model_MLP = MultilayerPerceptronClassifier.load("bdd/model_MLP.model")
+    model_MVC = LinearSVC.load("bdd/model_SVC.model")
     
-    file = open("resultat_ml.txt","a")
+    file = open("bdd/resultat_ml.txt","a")
     
     #MLP test
     predictions_MLP = model_MLP.transform(rescaled_test_df)
@@ -141,8 +141,8 @@ if __name__ == "__main__":
     #########              Test On Brexit Labeled Data                #########
     
     
-    brexit_positive = sc.textFile("data/brexit_positif.csv")
-    text_negative = sc.textFile("data/brexit_negatif.csv")
+    brexit_positive = sc.textFile("bdd/data/brexit_positif.csv")
+    text_negative = sc.textFile("bdd/data/brexit_negatif.csv")
     
     pos_labels = text_positive.map(lambda x : 1.0).zip(text_positive.map(lambda x : x))
     neg_labels = text_negative.map(lambda x : 0.0).zip(text_negative.map(lambda x : x))
