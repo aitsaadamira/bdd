@@ -70,7 +70,7 @@ if __name__ == "__main__":
     
     #number of words
     nb_features = max(nb_features_train , nb_features_test)
-    nb_features = 10000
+    nb_features = 5000
     print("\nDone : Tokenization training and test sets")
     
     ###########################################################################
