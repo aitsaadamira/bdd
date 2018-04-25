@@ -52,6 +52,7 @@ if __name__ == "__main__" :
     file.write("\n\n\n\n********************************************************************************\n")
     file.write(">>> Date time : " + str(datetime.now().strftime('%Y-%m-%d %H:%M:%S')) + "\n")
     
+    
     ###########################################################################
     #########                 Training and Test Set                   #########
     
@@ -87,9 +88,6 @@ if __name__ == "__main__" :
 #    
 #    print("\n=================== Testing =================== \n")
 #    
-#    file = open("resultat_MLlib.txt","a")
-#    file.write("\n\n\n\n********************************************************************************\n")
-#    file.write(">>> Date time : " + str(datetime.now().strftime('%Y-%m-%d %H:%M:%S')) + "\n")
 #    
 #    #Bayes
 #    predictions_bayes = model_bayes.predict(test)
