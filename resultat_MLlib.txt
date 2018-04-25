@@ -125,3 +125,202 @@
 
 -> ACCURACY DT GINI : 0.55
 >>>>>>> fcbc6a23c62e1a368000823c62bd9ac2bc699d3a
+
+
+
+
+********************************************************************************
+>>> Date time : 2018-04-25 17:31:26
+
+
+
+
+********************************************************************************
+>>> Date time : 2018-04-25 17:34:17
+
+
+============== DECISION TREE (entropy) ============== 
+
+- Positive : 95
+- Negative : 99906
+
+== Results on labeled data (Brexit) ==
+
+-> ACCURACY DT ENTROPY : 0.3864306784660767
+
+
+================ DECISION TREE (gini) =============== 
+
+- Positive : 171
+- Negative : 99830
+
+== Results on labeled data (Brexit) ==
+
+-> ACCURACY DT GINI : 0.3864306784660767
+
+
+
+
+********************************************************************************
+>>> Date time : 2018-04-25 17:38:09
+
+
+============== DECISION TREE (entropy) ============== 
+
+- Positive : 409
+- Negative : 399592
+
+== Results on labeled data (Brexit) ==
+
+-> ACCURACY DT ENTROPY : 0.3864306784660767
+
+
+================ DECISION TREE (gini) =============== 
+
+- Positive : 309
+- Negative : 399692
+
+== Results on labeled data (Brexit) ==
+
+-> ACCURACY DT GINI : 0.3864306784660767
+
+
+
+
+********************************************************************************
+>>> Date time : 2018-04-25 17:48:05
+>>> Part : 1 
+
+
+
+
+********************************************************************************
+>>> Date time : 2018-04-25 17:49:46
+>>> Part :  
+
+
+============== DECISION TREE (entropy) ============== 
+
+- Positive : 409
+- Negative : 399592
+
+== Results on labeled data (Brexit) ==
+
+-> ACCURACY DT ENTROPY : 0.5
+
+
+================ DECISION TREE (gini) =============== 
+
+- Positive : 309
+- Negative : 399692
+
+== Results on labeled data (Brexit) ==
+
+-> ACCURACY DT GINI : 0.5
+
+
+
+
+********************************************************************************
+>>> Date time : 2018-04-25 17:55:36
+>>> Part :  
+
+
+============== DECISION TREE (entropy) ============== 
+
+- Positive : 409
+- Negative : 399592
+
+== Results on labeled data (Brexit) ==
+
+-> ACCURACY DT ENTROPY : 0.3864306784660767
+
+
+================ DECISION TREE (gini) =============== 
+
+- Positive : 309
+- Negative : 399692
+
+== Results on labeled data (Brexit) ==
+
+-> ACCURACY DT GINI : 0.3864306784660767
+
+
+
+
+********************************************************************************
+>>> Date time : 2018-04-25 18:01:31
+>>> Part :  
+
+
+
+
+********************************************************************************
+>>> Date time : 2018-04-25 18:02:12
+>>> Part :  
+
+
+======================== BAYES ======================== 
+
+- Positive : 253
+- Negative : 399748
+
+== Results on labeled data (Brexit) ==
+
+-> ACCURACY BAYES : 0.3864306784660767
+
+
+
+
+********************************************************************************
+>>> Date time : 2018-04-25 18:03:08
+>>> Part :  
+
+
+======================== BAYES ======================== 
+
+- Positive : 253
+- Negative : 399748
+
+== Results on labeled data (Brexit) ==
+
+-> ACCURACY BAYES : 0.3864306784660767
+
+
+============== DECISION TREE (entropy) ============== 
+
+- Positive : 409
+- Negative : 399592
+
+== Results on labeled data (Brexit) ==
+
+-> ACCURACY DT ENTROPY : 0.3864306784660767
+
+
+================ DECISION TREE (gini) =============== 
+
+- Positive : 309
+- Negative : 399692
+
+== Results on labeled data (Brexit) ==
+
+-> ACCURACY DT GINI : 0.3864306784660767
+
+
+
+
+********************************************************************************
+>>> Date time : 2018-04-25 18:11:53
+>>> Part :  
+
+
+============== DECISION TREE (entropy) ============== 
+
+- Positive : 409
+- Negative : 399592
+
+
+================ DECISION TREE (gini) =============== 
+
+- Positive : 309
+- Negative : 399692
