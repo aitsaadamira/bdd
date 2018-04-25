@@ -144,7 +144,7 @@ if __name__ == "__main__":
     
     #training model MLP
     num_cols = rescaledData.select('features').collect()[0].features.size  #vocabulary size
-    layers = [num_cols , 100 , 2]
+    layers = [num_cols , 1 , 2]
     trainer_MLP = MultilayerPerceptronClassifier(maxIter=100, layers=layers, blockSize=128, seed=1234)
     model_MLP = trainer_MLP.fit(rescaledData)
     print("Done : Neural Network Training")
