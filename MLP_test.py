@@ -60,7 +60,7 @@ if __name__ == "__main__":
     pos_df = pos_labels.toDF(["label" , "sentence"])
     neg_df = neg_labels.toDF(["label" , "sentence"])
     
-    text_df = pos_df.union(neg_df)
+    text_df = neg_df.union(pos_df)
     
     tokenizer = Tokenizer(inputCol="sentence", outputCol="words")
     wordsData = tokenizer.transform(text_df)
