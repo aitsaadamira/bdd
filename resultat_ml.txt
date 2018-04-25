@@ -3,6 +3,7 @@
 
 
 ********************************************************************************
+<<<<<<< HEAD
 >>> Date time : 2018-04-25 15:16:37
 
 
@@ -46,10 +47,14 @@
 
 ********************************************************************************
 >>> Date time : 2018-04-25 15:27:09
+=======
+>>> Date time : 2018-04-25 17:38:52
+>>>>>>> 96bce3ed77b4a8adeef123cd41a502527e731942
 
 
 ========================= MLP =========================
 
+<<<<<<< HEAD
 - Positive : 9
 - Negative : 992
 
@@ -79,12 +84,27 @@
 
 == Results on labeled data (Brexit) ==
 -> ACCURACY MLP : 0.9876237623762376
+=======
+- Positive : 2
+- Negative : 9
+
+== Results on labeled data (Brexit) ==
+-> ACCURACY MLP : 0.4424778761061947
+>>>>>>> 96bce3ed77b4a8adeef123cd41a502527e731942
 
 
 ====================== Linear SVC =====================
 
+<<<<<<< HEAD
 - Positive : 2
 - Negative : 999
 
 == Results on labeled data (Brexit) ==
 -> ACCURACY Linear_SVC : 1.0
+=======
+- Positive : 6
+- Negative : 5
+
+== Results on labeled data (Brexit) ==
+-> ACCURACY Linear_SVC : 0.56047197640118
+>>>>>>> 96bce3ed77b4a8adeef123cd41a502527e731942
