@@ -76,37 +76,37 @@ if __name__ == "__main__" :
     #########                     Model Training                      #########
     
     
-#    print("\n======================================================= ")
-#    print("======================== BAYES ======================== ")
-#    print("=======================================================\n")
-#    
-#    print("\n================== Training ===================\n")
-#    
-#    model_bayes = NaiveBayes.train(training)
-#    print("Done : Bayes training ")
-#
-#
-#    ###########################################################################
-#    #########                     Model Testing                       #########
-#    
-#    print("\n=================== Testing =================== \n")
-#    
-#    
-#    #Bayes
-#    predictions_bayes = model_bayes.predict(test)
-#    num_pos_bayes = predictions_bayes.countByValue()[1.0]
-#    num_neg_bayes = predictions_bayes.countByValue()[0.0]
-#    
-#    print("== PREDICTION BAYES : ==\n")
-#    print("- Positive : " , num_pos_bayes)
-#    print("- Negative : " , num_neg_bayes)
-#    
-#    file.write("\n\n" + "======================== BAYES ======================== " + "\n\n")
-#    file.write("- Positive : " + str(num_pos_bayes) + "\n")
-#    file.write("- Negative : " + str(num_neg_bayes) + "\n")
-#    
-#    
-#    
+    print("\n======================================================= ")
+    print("======================== BAYES ======================== ")
+    print("=======================================================\n")
+    
+    print("\n================== Training ===================\n")
+    
+    model_bayes = NaiveBayes.train(training)
+    print("Done : Bayes training ")
+
+
+    ###########################################################################
+    #########                     Model Testing                       #########
+    
+    print("\n=================== Testing =================== \n")
+    
+    
+    #Bayes
+    predictions_bayes = model_bayes.predict(test)
+    num_pos_bayes = predictions_bayes.countByValue()[1.0]
+    num_neg_bayes = predictions_bayes.countByValue()[0.0]
+    
+    print("== PREDICTION BAYES : ==\n")
+    print("- Positive : " , num_pos_bayes)
+    print("- Negative : " , num_neg_bayes)
+    
+    file.write("\n\n" + "======================== BAYES ======================== " + "\n\n")
+    file.write("- Positive : " + str(num_pos_bayes) + "\n")
+    file.write("- Negative : " + str(num_neg_bayes) + "\n")
+    
+    
+    
 #    ###########################################################################
 #    #########           Testing on Brexit Labeled Data                #########
 #    
@@ -123,16 +123,16 @@ if __name__ == "__main__" :
     
     tfidf_test = idf.transform(tf_test)
     
-    #prediction and evaluation
-    #bayes
-#    labeled_prediction_bayes = test_tlabels.zip(model_bayes.predict(tfidf_test)).map(lambda x: {"actual": x[0], "predicted": x[1]})
-#    accuracy_bayes = 1.0 * labeled_prediction_bayes.filter(lambda doc: doc["actual"] == doc['predicted']).count() / labeled_prediction_bayes.count()
-#
-#    
-#    print('\n== ACCURACY BAYES : ', accuracy_bayes , '==')
-#    
-#    file.write("\n" + "== Results on labeled data (Brexit) ==" + "\n")
-#    file.write('\n-> ACCURACY BAYES : ' + str(accuracy_bayes) + '\n')
+#    prediction and evaluation
+#    bayes
+    labeled_prediction_bayes = test_tlabels.zip(model_bayes.predict(tfidf_test)).map(lambda x: {"actual": x[0], "predicted": x[1]})
+    accuracy_bayes = 1.0 * labeled_prediction_bayes.filter(lambda doc: doc["actual"] == doc['predicted']).count() / labeled_prediction_bayes.count()
+
+    
+    print('\n== ACCURACY BAYES : ', accuracy_bayes , '==')
+    
+    file.write("\n" + "== Results on labeled data (Brexit) ==" + "\n")
+    file.write('\n-> ACCURACY BAYES : ' + str(accuracy_bayes) + '\n')
     
     
     
