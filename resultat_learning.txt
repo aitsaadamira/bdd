@@ -141,3 +141,51 @@ part : 3
 
 -> ACCURACY regression : 0.6
 >>>>>>> ac3179195273cf3e2b0e537677d2d65bec04ed84
+
+
+
+
+*******************************************************
+part : 1
+
+
+======================== regression ======================== 
+
+- Positive : 212718
+- Negative : 238718
+
+== Results on labeled data (Brexit) ==
+
+-> ACCURACY regression : 0.5292620865139949
+
+
+
+
+*******************************************************
+part : 2
+
+
+======================== regression ======================== 
+
+- Positive : 212114
+- Negative : 239322
+
+== Results on labeled data (Brexit) ==
+
+-> ACCURACY regression : 0.5292620865139949
+
+
+
+
+*******************************************************
+part : 3
+
+
+======================== regression ======================== 
+
+- Positive : 213528
+- Negative : 237909
+
+== Results on labeled data (Brexit) ==
+
+-> ACCURACY regression : 0.5292620865139949
