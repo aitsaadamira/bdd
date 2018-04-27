@@ -1,0 +1,90 @@
+
+
+
+
+*******************************************************
+
+
+======================== BAYES ======================== 
+
+- Positive : 9
+- Negative : 1
+
+== Results on labeled data (Brexit) ==
+
+-> ACCURACY BAYES : 0.5
+
+
+
+
+*******************************************************
+
+
+================ DECISION TREE (entropy) ============== 
+
+- Positive : 7
+- Negative : 3
+
+== Results on labeled data (Brexit) ==
+
+-> ACCURACY DT ENTROPY : 0.45
+
+
+
+
+*******************************************************
+
+
+================== DECISION TREE (gini) =============== 
+
+- Positive : 7
+- Negative : 3
+
+== Results on labeled data (Brexit) ==
+
+-> ACCURACY DT GINI : 0.45
+
+
+
+
+*******************************************************
+
+
+========================= MLP =========================
+
+- Positive : 5
+- Negative : 5
+
+== Results on labeled data (Brexit) ==
+
+-> ACCURACY MLP : 0.5
+
+
+
+
+*******************************************************
+
+
+====================== Linear SVC =====================
+
+- Positive : 6
+- Negative : 4
+
+== Results on labeled data (Brexit) ==
+
+-> ACCURACY Linear_SVC : 0.5
+
+
+
+
+*******************************************************
+
+
+======================== regression ======================== 
+
+- Positive : 7
+- Negative : 3
+
+== Results on labeled data (Brexit) ==
+
+-> ACCURACY regression : 0.6
