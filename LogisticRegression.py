@@ -10,6 +10,7 @@ from pyspark import SparkContext, SparkConf
 from pyspark.mllib.feature import HashingTF, IDF
 from pyspark.mllib.regression import LabeledPoint
 from pyspark.mllib.classification import LogisticRegressionWithSGD
+import sys
 
 
 def training_set(pos_file, neg_file):
@@ -37,6 +38,7 @@ def test_set(test_file, idf):
 
 if __name__ == "__main__" :
     
+    part = sys.argv[1]
     
     ###########################################################################
     #########                      Spark Context                      #########
@@ -49,6 +51,7 @@ if __name__ == "__main__" :
     
     file = open("resultat_learning.txt","a")
     file.write("\n\n\n\n*******************************************************\n")
+    file.write("part : " + str(part) + "\n")
     
     
     ###########################################################################
@@ -61,7 +64,7 @@ if __name__ == "__main__" :
     training = training_idf[0]
     idf = training_idf[1]
     
-    test_file = "data/test_clean" + ".csv"
+    test_file = "data/test_clean" + str(part) + ".csv"
     test = test_set(test_file, idf)
     
     print("\nDone : Tf-IDF training and test sets")
