@@ -47,7 +47,7 @@ if __name__ == "__main__" :
     file = open("resultat_MLlib.txt","a")
     file.write("\n\n\n\n********************************************************************************\n")
     file.write(">>> Date time : " + str(datetime.now().strftime('%Y-%m-%d %H:%M:%S')) + "\n")
-    file.write(">>> 50/50 \n")
+#    file.write(">>> 50/50 \n")
     
     
     ###########################################################################

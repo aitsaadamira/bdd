@@ -9,11 +9,7 @@ Created on Tue Apr 24 17:18:02 2018
 from pyspark import SparkContext, SparkConf
 from pyspark.mllib.feature import HashingTF, IDF
 from pyspark.mllib.regression import LabeledPoint
-from pyspark.mllib.classification import NaiveBayes
-from datetime import datetime
-import sys
-
-#/home/mira/TAF/projet_BDD/code_BDD/test_petit_jeu_de_donnees
+from pyspark.mllib.tree import DecisionTree
 
 def training_set(pos_file, neg_file):
     text_negative = sc.textFile(neg_file)
@@ -40,8 +36,6 @@ def test_set(test_file, idf):
 
 if __name__ == "__main__" :
     
-    part = sys.argv[1]
-    
     
     ###########################################################################
     #########                      Spark Context                      #########
@@ -52,11 +46,8 @@ if __name__ == "__main__" :
     
     sc = SparkContext(conf = conf)
     
-    file = open("resultat_MLlib.txt","a")
-    file.write("\n\n\n\n********************************************************************************\n")
-    file.write(">>> Date time : " + str(datetime.now().strftime('%Y-%m-%d %H:%M:%S')) + "\n")
-    file.write(">>> Part : "+ str(part) + " \n")
-#    file.write(">>> 50/50 \n")
+    file = open("resultat_learning.txt","a")
+    file.write("\n\n\n\n*******************************************************\n")
     
     ###########################################################################
     #########                 Training and Test Set                   #########
@@ -68,8 +59,8 @@ if __name__ == "__main__" :
     training = training_idf[0]
     idf = training_idf[1]
     
-#    test_file = "data/test_clean"+ str(part) + ".csv"
-#    test = test_set(test_file, idf)
+    test_file = "data/test_clean.csv"
+    test = test_set(test_file, idf)
     
     print("\nDone : Tf-IDF training and test sets")
     
@@ -77,36 +68,33 @@ if __name__ == "__main__" :
     ###########################################################################
     #########                     Model Training                      #########
     
+    print("\n=================== Training ================== \n")
     
-    print("\n======================================================= ")
-    print("======================== BAYES ======================== ")
-    print("=======================================================\n")
     
-    print("\n================== Training ===================\n")
+    model_decision_tree_gini = DecisionTree.trainClassifier(training, categoricalFeaturesInfo={}, impurity="gini", maxDepth=5, numClasses=2)
+    print("Done : DT gini training")
     
-    model_bayes = NaiveBayes.train(training)
-    print("Done : Bayes training ")
-
 
     ###########################################################################
     #########                     Model Testing                       #########
     
-#    print("\n=================== Testing =================== \n")
-#    
-#    
-#    #Bayes
-#    predictions_bayes = model_bayes.predict(test)
-#    num_pos_bayes = predictions_bayes.countByValue()[1.0]
-#    num_neg_bayes = predictions_bayes.countByValue()[0.0]
-#    
-#    print("== PREDICTION BAYES : ==\n")
-#    print("- Positive : " , num_pos_bayes)
-#    print("- Negative : " , num_neg_bayes)
-#    
-#    file.write("\n\n" + "======================== BAYES ======================== " + "\n\n")
-#    file.write("- Positive : " + str(num_pos_bayes) + "\n")
-#    file.write("- Negative : " + str(num_neg_bayes) + "\n")
-#    
+    
+    print("\n=================== Testing =================== \n")
+    
+    #decision tree gini
+    predictions_decision_tree_enptropy = model_decision_tree_gini.predict(test)
+    num_pos_gini = predictions_decision_tree_enptropy.countByValue()[1.0]
+    num_neg_gini = predictions_decision_tree_enptropy.countByValue()[0.0]
+    
+    #decision tree gini
+    print("\n== PREDICTION gini : ==\n")
+    print("- Positive : " , num_pos_gini)
+    print("- Negative : " , num_neg_gini)
+    
+    file.write("\n\n" + "================== DECISION TREE (gini) =============== " + "\n\n")
+    file.write("- Positive : " + str(num_pos_gini) + "\n")
+    file.write("- Negative : " + str(num_neg_gini) + "\n")
+    
     
     
     ###########################################################################
@@ -124,21 +112,16 @@ if __name__ == "__main__" :
     tf_test_brexit = HashingTF(numFeatures=10000).transform(test_text_brexit.map(lambda x : x))
     
     tfidf_test_brexit = idf.transform(tf_test_brexit)
-#    
-#    prediction and evaluation
-#    bayes
-    labeled_prediction_bayes = test_tlabels_brexit.zip(model_bayes.predict(tfidf_test_brexit)).map(lambda x: {"actual": x[0], "predicted": x[1]})
-    accuracy_bayes = 1.0 * labeled_prediction_bayes.filter(lambda doc: doc["actual"] == doc['predicted']).count() / labeled_prediction_bayes.count()
-
     
-    print('\n== ACCURACY BAYES : ', accuracy_bayes , '==')
+    #decision tree gini
+    labeled_prediction_gini = test_tlabels_brexit.zip(model_decision_tree_gini.predict(tfidf_test_brexit)).map(lambda x: {"actual": x[0], "predicted": x[1]})
+    accuracy_gini = 1.0 * labeled_prediction_gini.filter(lambda doc: doc["actual"] == doc['predicted']).count() / labeled_prediction_gini.count()
+    
+    
+    print('\n== ACCURACY DT GINI : ', accuracy_gini , '==')
     
     file.write("\n" + "== Results on labeled data (Brexit) ==" + "\n")
-    file.write('\n-> ACCURACY BAYES : ' + str(accuracy_bayes) + '\n')
-    
-    
-
-    file.close()
+    file.write('\n-> ACCURACY DT GINI : ' + str(accuracy_gini) + '\n')
     
     
     

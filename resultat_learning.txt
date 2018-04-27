@@ -3,6 +3,7 @@
 
 
 *******************************************************
+<<<<<<< HEAD
 part : 1
 
 
@@ -14,11 +15,24 @@ part : 1
 == Results on labeled data (Brexit) ==
 
 -> ACCURACY regression : 0.5292620865139949
+=======
+
+
+======================== BAYES ======================== 
+
+- Positive : 9
+- Negative : 1
+
+== Results on labeled data (Brexit) ==
+
+-> ACCURACY BAYES : 0.5
+>>>>>>> ac3179195273cf3e2b0e537677d2d65bec04ed84
 
 
 
 
 *******************************************************
+<<<<<<< HEAD
 part : 2
 
 
@@ -30,11 +44,24 @@ part : 2
 == Results on labeled data (Brexit) ==
 
 -> ACCURACY regression : 0.5292620865139949
+=======
+
+
+================ DECISION TREE (entropy) ============== 
+
+- Positive : 7
+- Negative : 3
+
+== Results on labeled data (Brexit) ==
+
+-> ACCURACY DT ENTROPY : 0.45
+>>>>>>> ac3179195273cf3e2b0e537677d2d65bec04ed84
 
 
 
 
 *******************************************************
+<<<<<<< HEAD
 part : 3
 
 
@@ -46,6 +73,18 @@ part : 3
 == Results on labeled data (Brexit) ==
 
 -> ACCURACY regression : 0.5292620865139949
+=======
+
+
+================== DECISION TREE (gini) =============== 
+
+- Positive : 7
+- Negative : 3
+
+== Results on labeled data (Brexit) ==
+
+-> ACCURACY DT GINI : 0.45
+>>>>>>> ac3179195273cf3e2b0e537677d2d65bec04ed84
 
 
 
@@ -53,6 +92,7 @@ part : 3
 *******************************************************
 
 
+<<<<<<< HEAD
 ================ DECISION TREE (entropy) ============== 
 
 - Positive : 221132
@@ -61,3 +101,43 @@ part : 3
 == Results on labeled data (Brexit) ==
 
 -> ACCURACY DT ENTROPY : 0.49872773536895676
+=======
+========================= MLP =========================
+
+- Positive : 5
+- Negative : 5
+
+== Results on labeled data (Brexit) ==
+
+-> ACCURACY MLP : 0.5
+
+
+
+
+*******************************************************
+
+
+====================== Linear SVC =====================
+
+- Positive : 6
+- Negative : 4
+
+== Results on labeled data (Brexit) ==
+
+-> ACCURACY Linear_SVC : 0.5
+
+
+
+
+*******************************************************
+
+
+======================== regression ======================== 
+
+- Positive : 7
+- Negative : 3
+
+== Results on labeled data (Brexit) ==
+
+-> ACCURACY regression : 0.6
+>>>>>>> ac3179195273cf3e2b0e537677d2d65bec04ed84
