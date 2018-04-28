@@ -76,18 +76,21 @@ def compare_clustering(clustering_list, name_list, fun_name, mat_name):
 
 def kmeans(matrix, n_clusters, nb_init):
     labeler = KMeans(n_clusters = n_clusters, n_init=nb_init, max_iter=100)
+    print("kmeans")
     return labeler.fit(matrix)
 
 
 def sphe_kmeans(matrix, n_clusters, nb_init):
     labeler = SphericalKMeans(n_clusters = n_clusters, n_init=nb_init,  max_iter=100)
+    print("sphe_kmeans")
     return labeler.fit(matrix)
     
 
 def tfidf(csr):
     transformer = TfidfTransformer(use_idf = True)
-    return transformer.fit_transform(csr)
-
+    tfidf = transformer.fit_transform(csr)
+    print("tf_idf")
+    return tfidf
 
 def chi2(matrix):
     nrows = matrix.shape[0]
@@ -105,6 +108,7 @@ def chi2(matrix):
             data_new.append(data[j] / sqrt(sum_rows[i,0]*sum_cols[0,indices[j]]))
         
     normalized = csr_matrix( (np.array(data_new), matrix.indices, matrix.indptr), shape=(nrows,ncols))
+    print("chi2")
     return normalized
 
 
@@ -118,6 +122,7 @@ def LSA():
     lsa = make_pipeline(vect , tfidf, svd, normalizer)
 
     res_LSA = lsa.fit_transform(descr)
+    print(lsa)
     return res_LSA
 
 
@@ -203,7 +208,7 @@ def kmeans_exec(matrix, nb_clusters, nb_init, fun, fun_name, mat_name):
 if __name__ == "__main__":    
     
     nb_clusters = 200
-    nb_init = 5
+    nb_init = 3
     
     ###########################################################################
     #                             PROD x TERM                                 #
