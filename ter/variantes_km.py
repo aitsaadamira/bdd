@@ -150,7 +150,7 @@ def kmeans_exec(matrix, nb_clusters, nb_init, fun, fun_name, mat_name):
     clustering_list = []
     name_list = []
         
-    km_nothing = kmeans(matrix, nb_clusters, nb_init)
+    km_nothing = fun(matrix, nb_clusters, nb_init)
     save_res(km_nothing, fun_name + "_nothing" , mat_name, nb_clusters, nb_init)
 
     print("================== nothing ======================")
