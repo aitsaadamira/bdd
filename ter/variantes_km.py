@@ -15,8 +15,29 @@ from spherecluster import SphericalKMeans
 from scipy.sparse import load_npz, csr_matrix
 from coclust.evaluation.external import accuracy
 from sklearn.preprocessing import Normalizer, normalize
-from sklearn.feature_extraction.text import TfidfTransformer
+from sklearn.feature_extraction.text import TfidfTransformer, CountVectorizer
 from sklearn.metrics import normalized_mutual_info_score as RMI, adjusted_rand_score as Rand
+from sklearn.pipeline import make_pipeline
+from sklearn.decomposition import TruncatedSVD
+import gzip
+
+
+def parse(path):
+    g = gzip.open(path, 'r')
+    for l in g:
+        yield eval(l)
+
+
+def parse_descr(filename = "meta_Baby.json.gz"):
+    descr = []
+    for l in parse(filename):
+        if(len(descr) == 200):
+            break
+        if(l.get('description' , 'None') == "None"):
+            descr.append("")
+        else:
+            descr.append(l["description"])
+    return descr
 
 
 def save_res(res, fun_name, mat_name, nb_clusters, nb_init):
@@ -86,6 +107,20 @@ def chi2(matrix):
     normalized = csr_matrix( (np.array(data_new), matrix.indices, matrix.indptr), shape=(nrows,ncols))
     return normalized
 
+
+def LSA():
+    descr = parse_descr()
+
+    vect = CountVectorizer(stop_words='english')
+    tfidf = TfidfTransformer()
+    svd = TruncatedSVD(300)
+    normalizer = Normalizer()
+    lsa = make_pipeline(vect , tfidf, svd, normalizer)
+
+    res_LSA = lsa.fit_transform(descr)
+    return res_LSA
+
+
 def kmeans_tf_idf(matrix, nb_clusters, nb_init, fun):
     matrix_tfidf = tfidf(matrix)
     km = fun(matrix_tfidf, nb_clusters, nb_init=nb_init)
@@ -108,6 +143,12 @@ def kmeans_chi2(matrix, nb_clusters, nb_init, fun):
     matrix_tfidf = chi2(matrix)
     km = fun(matrix_tfidf, nb_clusters, nb_init=nb_init)
     return km
+
+def kmeans_lsa(matrix, nb_clusters, nb_init, fun):
+    matrix_lsa = LSA()
+    km = fun(matrix_lsa,  nb_clusters, nb_init=nb_init)
+    return km
+
     
 
 def kmeans_exec(matrix, nb_clusters, nb_init, fun, fun_name, mat_name):
@@ -122,22 +163,39 @@ def kmeans_exec(matrix, nb_clusters, nb_init, fun, fun_name, mat_name):
     """
 
     km_nothing = (matrix, nb_clusters, nb_init)
-    save_res(km_nothing, "k-means tfidf" , "prod_term" , nb_clusters, nb_init)
+    save_res(km_nothing, fun_name + "_nothing" , mat_name, nb_clusters, nb_init)
+    
+    print("================== nothing ======================")
     
     km_tfidf = kmeans_tf_idf(matrix, nb_clusters, nb_init, fun)
-    save_res(km_tfidf, "k-means tfidf" , "prod_term" , nb_clusters, nb_init)
+    save_res(km_tfidf, fun_name + " _tfidf" , mat_name , nb_clusters, nb_init)
+    
+    print("=================== tfidf =======================")
     
     km_norm_line = kmeans_norm_line(matrix, nb_clusters, nb_init, fun)
-    save_res(km_norm_line, "k-means norm_line" , "prod_term" , nb_clusters, nb_init)
+    save_res(km_norm_line, fun_name + "_norm_line" , mat_name , nb_clusters, nb_init)
+    
+    print("================== norm_line =====================")
     
     km_norm_unit = kmeans_norm_unit(matrix, nb_clusters, nb_init, fun)
-    save_res(km_norm_unit, "k-means km_norm_unit" , "prod_term" , nb_clusters, nb_init)
+    save_res(km_norm_unit, fun_name + "_norm_unit" , mat_name , nb_clusters, nb_init)
+    
+    print("================== norm_unit =====================")
     
     km_chi2 = kmeans_chi2(matrix, nb_clusters, nb_init, fun)
-    save_res(km_chi2, "k-means km_chi2" , "prod_term" , nb_clusters, nb_init)
+    save_res(km_chi2, fun_name + "_chi2" , mat_name , nb_clusters, nb_init)
+    
+    print("===================== chi2 =======================")
     
     clustering_list = [km_tfidf, km_norm_line, km_norm_unit, km_chi2]
-    name_list = ["tfidf" , "notm_line" , "notm_unit" , "chi2"]
+    name_list = ["tfidf" , "norm_line" , "norm_unit" , "chi2"]
+    
+    if(mat_name == "prod_term"):
+            km_lsa = kmeans_lsa(matrix, nb_clusters, nb_init, fun)
+            save_res(km_lsa, fun_name + "_lsa" , mat_name , nb_clusters, nb_init)
+            clustering_list.append(km_lsa)
+            name_list.append("lsa")
+        
     
     compare_clustering(clustering_list, name_list = name_list, fun_name = fun_name, mat_name = mat_name)
     
@@ -176,8 +234,8 @@ if __name__ == "__main__":
     
     csr_comp = load_npz("csr_comp.npz")
 
-    kmeans_exec(matrix = csr_comp, nb_clusters = nb_clusters, nb_init = nb_init, fun = kmeans, fun_name = "kmeans" , mat_name = "sub_comp")
-    kmeans_exec(matrix = csr_comp, nb_clusters = nb_clusters, nb_init = nb_init, fun = sphe_kmeans, fun_name = "sphe_kmeans" , mat_name = "sub_comp")
+    kmeans_exec(matrix = csr_comp, nb_clusters = nb_clusters, nb_init = nb_init, fun = kmeans, fun_name = "kmeans" , mat_name = "comp_mat")
+    kmeans_exec(matrix = csr_comp, nb_clusters = nb_clusters, nb_init = nb_init, fun = sphe_kmeans, fun_name = "sphe_kmeans" , mat_name = "comp_mat")
 
 
 
