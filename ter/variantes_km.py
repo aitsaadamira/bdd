@@ -208,7 +208,7 @@ def kmeans_exec(matrix, nb_clusters, nb_init, fun, fun_name, mat_name):
 if __name__ == "__main__":    
     
     nb_clusters = 200
-    nb_init = 3
+    nb_init = 5
     
     ###########################################################################
     #                             PROD x TERM                                 #
