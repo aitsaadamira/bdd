@@ -228,15 +228,15 @@ if __name__ == "__main__":
 #    kmeans_exec(matrix = prod_term, nb_clusters = nb_clusters, nb_init = nb_init, fun = sphe_kmeans, fun_name = "sphe_kmeans" , mat_name = "prod_term")
 #    
     
-    print("prod_user")
+#    print("prod_user")
     
     ###########################################################################
     #                             PROD x USER                                 #
     
-    prod_user = load_npz("prod_user_matrix.npz")
+#    prod_user = load_npz("prod_user_matrix.npz")
 
-    kmeans_exec(matrix = prod_user, nb_clusters = nb_clusters, nb_init = nb_init, fun = kmeans, fun_name = "kmeans" , mat_name = "prod_user")
-    kmeans_exec(matrix = prod_user, nb_clusters = nb_clusters, nb_init = nb_init, fun = sphe_kmeans, fun_name = "sphe_kmeans" , mat_name = "prod_user")
+#    kmeans_exec(matrix = prod_user, nb_clusters = nb_clusters, nb_init = nb_init, fun = kmeans, fun_name = "kmeans" , mat_name = "prod_user")
+#    kmeans_exec(matrix = prod_user, nb_clusters = nb_clusters, nb_init = nb_init, fun = sphe_kmeans, fun_name = "sphe_kmeans" , mat_name = "prod_user")
     
     print("prod_sub")
     
