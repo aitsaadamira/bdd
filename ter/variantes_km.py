@@ -9,17 +9,16 @@ Created on Thu Apr 19 00:19:19 2018
 import numpy as np
 import pandas as pd
 from math import sqrt
-from pickle import dump, load
+from pickle import dump#, load
 from sklearn.cluster import KMeans
 from spherecluster import SphericalKMeans
 from scipy.sparse import load_npz, csr_matrix
 from coclust.evaluation.external import accuracy
 from sklearn.preprocessing import Normalizer, normalize
-from sklearn.feature_extraction.text import TfidfTransformer, CountVectorizer
+from sklearn.feature_extraction.text import TfidfTransformer#, CountVectorizer
 from sklearn.metrics import normalized_mutual_info_score as RMI, adjusted_rand_score as Rand
 from sklearn.pipeline import make_pipeline
 from sklearn.decomposition import TruncatedSVD
-import gzip
 
 
 def save_res(res, fun_name, mat_name, nb_clusters, nb_init):
@@ -51,9 +50,9 @@ def compare_clustering(clustering_list, name_list, fun_name, mat_name):
     file_prefix = "result/"
     file_suffix =  fun_name + "_" + mat_name
     
-    mat_RMI.to_csv(file_prefix + "RMI_" + file_suffix + ".csv")
-    mat_Rand.to_csv(file_prefix + "Rand_" + file_suffix + ".csv")
-    mat_acc.to_csv(file_prefix + "Acc_" + file_suffix + ".csv")
+    mat_RMI.to_csv(file_prefix + "RMI_" + file_suffix + ".csv" , float_format='%.3f')
+    mat_Rand.to_csv(file_prefix + "Rand_" + file_suffix + ".csv", float_format='%.3f')
+    mat_acc.to_csv(file_prefix + "Acc_" + file_suffix + ".csv", float_format='%.3f')
     
 
 def kmeans(matrix, n_clusters, nb_init):
@@ -147,16 +146,39 @@ def kmeans_exec(matrix, nb_clusters, nb_init, fun, fun_name, mat_name):
             
     """
 
-    clustering_list = []
-    name_list = []
+    
+#    km_nothing = load( open( "result/" +  fun_name + "_nothing" + "_" + mat_name + ".pkl" , "rb"))
+#
+#    print("================== nothing ======================")
+#    
+#    km_tfidf = load( open( "result/" +  fun_name + "_tfidf" + "_" + mat_name + ".pkl" , "rb"))
+#    
+#    print("=================== tfidf =======================")
+#    
+#    km_norm_line = load( open( "result/" +  fun_name + "_norm_line" + "_" + mat_name + ".pkl" , "rb"))
+#    
+#    print("================== norm_line =====================")
+#    
+#    km_norm_unit = load( open( "result/" +  fun_name + "_norm_unit" + "_" + mat_name + ".pkl" , "rb"))
+#    
+#    print("================== norm_unit =====================")
+#    
+#    km_chi2 = load( open( "result/" +  fun_name + "_chi2" + "_" + mat_name + ".pkl" , "rb"))
+#    
+#    print("===================== chi2 =======================")
         
-    km_nothing = fun(matrix, nb_clusters, nb_init)
+#    km_lsa = load( open( "result/" +  fun_name + "_lsa" + "_" + mat_name + ".pkl" , "rb"))
+#    clustering_list.append(km_lsa)
+#    name_list.append("lsa")
+    
+    
+    km_nothing = kmeans(matrix, nb_clusters, nb_init)
     save_res(km_nothing, fun_name + "_nothing" , mat_name, nb_clusters, nb_init)
-
+    
     print("================== nothing ======================")
     
     km_tfidf = kmeans_tf_idf(matrix, nb_clusters, nb_init, fun)
-    save_res(km_tfidf, fun_name + " _tfidf" , mat_name , nb_clusters, nb_init)
+    save_res(km_tfidf, fun_name + "_tfidf" , mat_name , nb_clusters, nb_init)
     
     print("=================== tfidf =======================")
     
@@ -174,18 +196,19 @@ def kmeans_exec(matrix, nb_clusters, nb_init, fun, fun_name, mat_name):
     save_res(km_chi2, fun_name + "_chi2" , mat_name , nb_clusters, nb_init)
     
     print("===================== chi2 =======================")
-
-    clustering_list = [km_tfidf, km_norm_line, km_norm_unit, km_chi2]
-    name_list = ["tfidf" , "norm_line" , "norm_unit" , "chi2"]
     
-    if(mat_name!="prod_term") :
-        km_lsa = kmeans_lsa(matrix, nb_clusters, nb_init, fun)
-        save_res(km_lsa, fun_name + "_lsa" , mat_name , nb_clusters, nb_init)
-        clustering_list.append(km_lsa)
-        name_list.append("lsa")
-        
-        
-        compare_clustering(clustering_list, name_list = name_list, fun_name = fun_name, mat_name = mat_name)
+    clustering_list = [km_nothing, km_tfidf, km_norm_line, km_norm_unit, km_chi2]
+    name_list = ["/" , "tfidf" , "norm_line" , "norm_unit" , "chi2"]
+    
+
+    km_lsa = kmeans_lsa(matrix, nb_clusters, nb_init, fun)
+    save_res(km_lsa, fun_name + "_lsa" , mat_name , nb_clusters, nb_init)
+    clustering_list.append(km_lsa)
+    name_list.append("lsa")
+    
+    print("====================== LSA =======================")
+
+    compare_clustering(clustering_list, name_list = name_list, fun_name = fun_name, mat_name = mat_name)
     
     
 
@@ -194,16 +217,16 @@ if __name__ == "__main__":
     nb_clusters = 200
     nb_init = 5
     
-    print("prod_term")
+#    print("prod_term")
     
     ###########################################################################
     #                             PROD x TERM                                 #
     
-    prod_term = load_npz("prod_term_matrix.npz")
-
+#    prod_term = load_npz("prod_term_matrix.npz")
+#
 #    kmeans_exec(matrix = prod_term, nb_clusters = nb_clusters, nb_init = nb_init, fun = kmeans, fun_name = "kmeans" , mat_name = "prod_term")
-    kmeans_exec(matrix = prod_term, nb_clusters = nb_clusters, nb_init = nb_init, fun = sphe_kmeans, fun_name = "sphe_kmeans" , mat_name = "prod_term")
-    
+#    kmeans_exec(matrix = prod_term, nb_clusters = nb_clusters, nb_init = nb_init, fun = sphe_kmeans, fun_name = "sphe_kmeans" , mat_name = "prod_term")
+#    
     
     print("prod_user")
     
