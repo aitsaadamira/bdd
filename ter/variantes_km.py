@@ -197,14 +197,14 @@ def kmeans_exec(matrix, nb_clusters, nb_init, fun, fun_name, mat_name):
         
         print("===================== chi2 =======================")
         
-    clustering_list = [km_nothing, km_tfidf, km_norm_line, km_norm_unit, km_chi2]
-    name_list = ["/" , "tfidf" , "norm_line" , "norm_unit" , "chi2"]
+#    clustering_list = [km_nothing, km_tfidf, km_norm_line, km_norm_unit, km_chi2]
+#    name_list = ["/" , "tfidf" , "norm_line" , "norm_unit" , "chi2"]
     
 
     km_lsa = kmeans_lsa(matrix, nb_clusters, nb_init, fun)
     save_res(km_lsa, fun_name + "_lsa" , mat_name , nb_clusters, nb_init)
-    clustering_list.append(km_lsa)
-    name_list.append("lsa")
+#    clustering_list.append(km_lsa)
+#    name_list.append("lsa")
     
     print("====================== LSA =======================")
 
