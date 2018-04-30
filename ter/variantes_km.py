@@ -149,67 +149,67 @@ def kmeans_exec(matrix, nb_clusters, nb_init, fun, fun_name, mat_name):
     clustering_list = []
     name_list = []
     
-    km_nothing = load( open( "result/" +  fun_name + "_nothing" + "_" + mat_name + ".pkl" , "rb"))
-
-    print("================== nothing ======================")
-    
-    km_tfidf = load( open( "result/" +  fun_name + "_tfidf" + "_" + mat_name + ".pkl" , "rb"))
-    
-    print("=================== tfidf =======================")
-    
-    km_norm_line = load( open( "result/" +  fun_name + "_norm_line" + "_" + mat_name + ".pkl" , "rb"))
-    
-    print("================== norm_line =====================")
-    
-    km_norm_unit = load( open( "result/" +  fun_name + "_norm_unit" + "_" + mat_name + ".pkl" , "rb"))
-    
-    print("================== norm_unit =====================")
-    
-    km_chi2 = load( open( "result/" +  fun_name + "_chi2" + "_" + mat_name + ".pkl" , "rb"))
-    
-    print("===================== chi2 =======================")
-        
-    km_lsa = load( open( "result/" +  fun_name + "_lsa" + "_" + mat_name + ".pkl" , "rb"))
-    
-    print("====================== lsa =======================")
-    
-    clustering_list = [km_nothing, km_tfidf, km_norm_line, km_norm_unit, km_chi2]
-    name_list = ["/" , "tfidf" , "norm_line" , "norm_unit" , "chi2"]
-    
-    clustering_list.append(km_lsa)
-    name_list.append("lsa")
-    
-#    km_nothing = kmeans(matrix, nb_clusters, nb_init)
-#    save_res(km_nothing, fun_name + "_nothing" , mat_name, nb_clusters, nb_init)
-#    
+#    km_nothing = load( open( "/home/mira/Downloads/resultats_km/" +  fun_name + "_nothing" + "_" + mat_name + ".pkl" , "rb"))
+#
 #    print("================== nothing ======================")
 #    
-#    km_tfidf = kmeans_tf_idf(matrix, nb_clusters, nb_init, fun)
-#    save_res(km_tfidf, fun_name + "_tfidf" , mat_name , nb_clusters, nb_init)
+#    km_tfidf = load( open( "/home/mira/Downloads/resultats_km/" +  fun_name + "_tfidf" + "_" + mat_name + ".pkl" , "rb"))
 #    
 #    print("=================== tfidf =======================")
 #    
-#    km_norm_line = kmeans_norm_line(matrix, nb_clusters, nb_init, fun)
-#    save_res(km_norm_line, fun_name + "_norm_line" , mat_name , nb_clusters, nb_init)
+#    km_norm_line = load( open( "/home/mira/Downloads/resultats_km/" +  fun_name + "_norm_line" + "_" + mat_name + ".pkl" , "rb"))
 #    
 #    print("================== norm_line =====================")
 #    
-#    km_norm_unit = kmeans_norm_unit(matrix, nb_clusters, nb_init, fun)
-#    save_res(km_norm_unit, fun_name + "_norm_unit" , mat_name , nb_clusters, nb_init)
+#    km_norm_unit = load( open( "/home/mira/Downloads/resultats_km/" +  fun_name + "_norm_unit" + "_" + mat_name + ".pkl" , "rb"))
 #    
 #    print("================== norm_unit =====================")
 #    
-#    km_chi2 = kmeans_chi2(matrix, nb_clusters, nb_init, fun)
-#    save_res(km_chi2, fun_name + "_chi2" , mat_name , nb_clusters, nb_init)
+#    km_chi2 = load( open( "/home/mira/Downloads/resultats_km/" +  fun_name + "_chi2" + "_" + mat_name + ".pkl" , "rb"))
 #    
 #    print("===================== chi2 =======================")
-        
+#        
+#    km_lsa = load( open( "/home/mira/Downloads/resultats_km/" +  fun_name + "_lsa" + "_" + mat_name + ".pkl" , "rb"))
+#    
+#    print("====================== lsa =======================")
+#    
 #    clustering_list = [km_nothing, km_tfidf, km_norm_line, km_norm_unit, km_chi2]
 #    name_list = ["/" , "tfidf" , "norm_line" , "norm_unit" , "chi2"]
-    
-
+#    
 #    clustering_list.append(km_lsa)
 #    name_list.append("lsa")
+    
+    km_nothing = kmeans(matrix, nb_clusters, nb_init)
+#    save_res(km_nothing, fun_name + "_nothing" , mat_name, nb_clusters, nb_init)
+    
+    print("================== nothing ======================")
+    
+    km_tfidf = kmeans_tf_idf(matrix, nb_clusters, nb_init, fun)
+#    save_res(km_tfidf, fun_name + "_tfidf" , mat_name , nb_clusters, nb_init)
+    
+    print("=================== tfidf =======================")
+    
+    km_norm_line = kmeans_norm_line(matrix, nb_clusters, nb_init, fun)
+#    save_res(km_norm_line, fun_name + "_norm_line" , mat_name , nb_clusters, nb_init)
+    
+    print("================== norm_line =====================")
+    
+    km_norm_unit = kmeans_norm_unit(matrix, nb_clusters, nb_init, fun)
+#    save_res(km_norm_unit, fun_name + "_norm_unit" , mat_name , nb_clusters, nb_init)
+    
+    print("================== norm_unit =====================")
+    
+    km_chi2 = kmeans_chi2(matrix, nb_clusters, nb_init, fun)
+#    save_res(km_chi2, fun_name + "_chi2" , mat_name , nb_clusters, nb_init)
+    
+    print("===================== chi2 =======================")
+        
+    clustering_list = [km_nothing, km_tfidf, km_norm_line, km_norm_unit, km_chi2]
+    name_list = ["/" , "tfidf" , "norm_line" , "norm_unit" , "chi2"]
+    
+    km_lsa = kmeans_lsa(matrix, nb_clusters, nb_init, fun)
+    clustering_list.append(km_lsa)
+    name_list.append("lsa")
     
 #    print("====================== LSA =======================")
 
@@ -229,8 +229,8 @@ if __name__ == "__main__":
     
     prod_term = load_npz("prod_term_matrix.npz")
 #
-    kmeans_exec(matrix = prod_term, nb_clusters = nb_clusters, nb_init = nb_init, fun = kmeans, fun_name = "kmeans" , mat_name = "prod_term")
-    kmeans_exec(matrix = prod_term, nb_clusters = nb_clusters, nb_init = nb_init, fun = sphe_kmeans, fun_name = "sphe_kmeans" , mat_name = "prod_term")
+#    kmeans_exec(matrix = prod_term, nb_clusters = nb_clusters, nb_init = nb_init, fun = kmeans, fun_name = "kmeans" , mat_name = "prod_term")
+#    kmeans_exec(matrix = prod_term, nb_clusters = nb_clusters, nb_init = nb_init, fun = sphe_kmeans, fun_name = "sphe_kmeans" , mat_name = "prod_term")
 #    
     
     print("prod_user")
