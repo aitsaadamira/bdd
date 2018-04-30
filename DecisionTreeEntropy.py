@@ -18,7 +18,7 @@ def training_set(pos_file, neg_file):
     train_text = text_negative.union(text_positive)
     train_labels = text_negative.map(lambda x: 0.0).union(text_positive.map(lambda x: 1.0))
     
-    tf = HashingTF(numFeatures=1000000).transform(train_text.map(lambda x : x))
+    tf = HashingTF(numFeatures=100000).transform(train_text.map(lambda x : x))
     idf = IDF().fit(tf)
     train_tfidf = idf.transform(tf)
     
@@ -29,7 +29,7 @@ def training_set(pos_file, neg_file):
 def test_set(test_file, idf):
     test_text = sc.textFile(test_file)
     
-    tf_test = HashingTF(numFeatures=1000000).transform(test_text.map(lambda x : x))
+    tf_test = HashingTF(numFeatures=100000).transform(test_text.map(lambda x : x))
     tfidf_test = idf.transform(tf_test)
     return tfidf_test
 
@@ -109,7 +109,7 @@ if __name__ == "__main__" :
     test_text_brexit = text_negative_brexit.union(text_positive_brexit)
     test_tlabels_brexit = text_negative_brexit.map(lambda x: 0.0).union(text_positive_brexit.map(lambda x: 1.0))
     
-    tf_test_brexit = HashingTF(numFeatures=1000000).transform(test_text_brexit.map(lambda x : x))
+    tf_test_brexit = HashingTF(numFeatures=100000).transform(test_text_brexit.map(lambda x : x))
     
     tfidf_test_brexit = idf.transform(tf_test_brexit)
     
