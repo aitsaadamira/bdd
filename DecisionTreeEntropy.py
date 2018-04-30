@@ -109,7 +109,7 @@ if __name__ == "__main__" :
     test_text_brexit = text_negative_brexit.union(text_positive_brexit)
     test_tlabels_brexit = text_negative_brexit.map(lambda x: 0.0).union(text_positive_brexit.map(lambda x: 1.0))
     
-    tf_test_brexit = HashingTF(numFeatures=100000).transform(test_text_brexit.map(lambda x : x))
+    tf_test_brexit = HashingTF(numFeatures=1000000).transform(test_text_brexit.map(lambda x : x))
     
     tfidf_test_brexit = idf.transform(tf_test_brexit)
     
