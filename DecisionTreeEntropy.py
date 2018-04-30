@@ -29,7 +29,7 @@ def training_set(pos_file, neg_file):
 def test_set(test_file, idf):
     test_text = sc.textFile(test_file)
     
-    tf_test = HashingTF(numFeatures=10000).transform(test_text.map(lambda x : x))
+    tf_test = HashingTF(numFeatures=100000).transform(test_text.map(lambda x : x))
     tfidf_test = idf.transform(tf_test)
     return tfidf_test
 
