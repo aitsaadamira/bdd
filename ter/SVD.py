@@ -37,7 +37,7 @@ if __name__ == "__main__":
     
                 ##############    Sans TF-IDF    ################
     
-    csr_meta = load_npz("/home/mira/TAF/TER/code/matrices/prod_term_matrix.npz")
+    csr_meta = load_npz("matrices/prod_term_matrix.npz")
     clf_pt = TruncatedSVD(nb_composante)
     svd_pt = clf_pt.fit_transform(csr_meta)
     variance_pt = sorted(clf_pt.explained_variance_ratio_, reverse=True) #[0.278, 0.0328, 0.0180, ...]
@@ -112,7 +112,7 @@ if __name__ == "__main__":
                 ##############    Sans TF-IDF    ################
 
     
-    csr_rev = load_npz("/home/mira/TAF/TER/code/matrices/prod_user_matrix.npz")
+    csr_rev = load_npz("matrices/prod_user_matrix.npz")
     
     clf_pu = TruncatedSVD(nb_composante)
     svd_pu = clf_pu.fit_transform(csr_rev)
