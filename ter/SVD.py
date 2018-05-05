@@ -42,6 +42,7 @@ if __name__ == "__main__":
     clf_pt = TruncatedSVD(nb_composante)
     svd_pt = clf_pt.fit_transform(csr_meta)
     variance_pt = sorted(clf_pt.explained_variance_ratio_, reverse=True) #[0.0041, 0.0032, 0.0031, ...
+    print(variance_pt[0:20])
     
     #plots inertie :
     plt.figure(figsize=(15,9))
