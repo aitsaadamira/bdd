@@ -69,7 +69,7 @@ if __name__ == "__main__":
 #    plot_svd(svd_comp, 1, 2, 'svd_1_2_Prodcomp' + str(nb_composante) + '.png')
 #    plot_svd(svd_comp, 2, 3, 'svd_2_3_Prodcomp' + str(nb_composante) + '.png')
     
-    
+    file = open("resultat_SVD.txt","a")
     file.write("\n\n\n\n*******************************************************\n")
     file.write("\nproduit comp : \n")
     file.write("Inertie : ")
@@ -109,7 +109,6 @@ if __name__ == "__main__":
 #    plt.title('Produit comp : Variance cumulée des axes de la SVD (TF-IDF)')
 #    plt.savefig('var_cumulee_prod_comp_tfidf' + str(nb_composante) + '.png')
         
-    file = open("resultat_SVD.txt","a")
     file.write("\nproduit comp TF-IDF : \n")
     file.write("Inertie : ")
     file.write(str(variance_comp_tf[0]) + ' - ' + str(variance_comp_tf[1]))
