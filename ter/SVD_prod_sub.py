@@ -37,7 +37,7 @@ if __name__ == "__main__":
     
                 ##############    Sans TF-IDF    ################
     
-    csr_meta = load_npz("/home/mira/TAF/TER/code/matrices/csr_sub.npz")
+    csr_meta = load_npz("matrices/csr_sub.npz")
     clf_sub = TruncatedSVD(nb_composante)
     svd_sub = clf_sub.fit_transform(csr_meta)
     variance_sub = sorted(clf_sub.explained_variance_ratio_, reverse=True) #[0.278, 0.0328, 0.0180, ...]
