@@ -69,7 +69,7 @@ if __name__ == "__main__":
 #    plot_svd(svd_sub, 1, 2, 'svd_1_2_Prodsub' + str(nb_composante) + '.png')
 #    plot_svd(svd_sub, 2, 3, 'svd_2_3_Prodsub' + str(nb_composante) + '.png')
         
-    file = open("resultat_SVD.txt","a")
+        
     file.write("\n\n\n\n*******************************************************\n")
     file.write("\nproduit sub : \n")
     file.write("Inertie : ")

@@ -112,7 +112,6 @@ if __name__ == "__main__":
 #    plt.title('Produit x user : Produit x user : Variance cumulée des axes de la SVD (TF-IDF)')
 #    plt.savefig('var_cumulee_prod_user_tfidf' + str(nb_composante) + '.png')
 
-    file = open("resultat_SVD.txt","a")
     file.write("n\produit user  TF-IDF : \n")
     file.write("Inertie : ")
     file.write(str(variance_pu_tf[0])  + ' - ' +  str(variance_pu_tf[1]))

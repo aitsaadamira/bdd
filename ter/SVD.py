@@ -115,7 +115,6 @@ if __name__ == "__main__":
 #        
 #    
         
-    file = open("resultat_SVD.txt","a")
     file.write("\nproduit terme TF-IDF : \n")
     file.write("Inertie : ")
     file.write(str(variance_pt_tf[0])  + ' - ' +  str(variance_pt_tf[1]))
