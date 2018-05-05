@@ -35,13 +35,13 @@ if __name__ == "__main__":
     
     nb_composante = 300
     
-                ##############    Sans TF-IDF    ################
     
+    #### code user
     csr_meta = load_npz("matrices/prod_term_matrix.npz")
+    
     clf_pt = TruncatedSVD(nb_composante)
     svd_pt = clf_pt.fit_transform(csr_meta)
-    variance_pt = sorted(clf_pt.explained_variance_ratio_, reverse=True) #[0.278, 0.0328, 0.0180, ...]
-    print(variance_pt[0:20])
+    variance_pt = sorted(clf_pt.explained_variance_ratio_, reverse=True) #[0.0041, 0.0032, 0.0031, ...
     
     #plots inertie :
     plt.figure(figsize=(15,9))
@@ -51,8 +51,8 @@ if __name__ == "__main__":
     plt.xticks([1] + list(range(10, len(variance_pt)+1 , 10)))
     plt.xlabel('axe')
     plt.ylabel('inertie')
-    plt.title('Produit x terme : Variance expliquée par les premiers axes de la SVD')
-    plt.savefig('inertie_svd_prod_term' + str(nb_composante) + '.png')
+    plt.title('Produit x term : Variance expliquée par les premiers axes de la SVD')
+    plt.savefig('inertie_svd_prod_term' + str(nb_composante) + '.png')  
     
     #cumulative variance
     cumul = [variance_pt[0]]
@@ -63,12 +63,52 @@ if __name__ == "__main__":
     plt.plot(cumul)
     plt.xlabel('axe')
     plt.ylabel('variance')
-    plt.title('Produit x terme : Variance cumulée des axes de la SVD')
-    plt.savefig('var_cumulee_prod_term.png')
+    plt.title('Produit x term : Variance cumulée des axes de la SVD')
+    plt.savefig('var_cumulee_prod_term' + str(nb_composante) + '.png')
+    
     
     #plot SVD
-    plot_svd(svd_pt, 1, 2, 'svd_1_2_ProdTerm' + str(nb_composante) + '.png')
-    plot_svd(svd_pt, 2, 3, 'svd_2_3_ProdTerm' + str(nb_composante) + '.png')
+    plot_svd(svd_pt, 1, 2, 'svd_1_2_Prodterm' + str(nb_composante) + '.png')
+    plot_svd(svd_pt, 1, 2, 'svd_2_3_Prodterm.png')
+    #### code user
+    
+    
+    
+    
+                ##############    Sans TF-IDF    ################
+    
+#    csr_meta = load_npz("matrices/prod_term_matrix.npz")
+#    clf_pt = TruncatedSVD(nb_composante)
+#    svd_pt = clf_pt.fit_transform(csr_meta)
+#    variance_pt = sorted(clf_pt.explained_variance_ratio_, reverse=True) #[0.278, 0.0328, 0.0180, ...]
+#    print(variance_pt[0:20])
+#    
+#    #plots inertie :
+#    plt.figure(figsize=(15,9))
+#    #plt.ylim((0 , 1))
+#    indices = [x+1 for x in range(len(variance_pt))]
+#    plt.bar(indices , variance_pt)
+#    plt.xticks([1] + list(range(10, len(variance_pt)+1 , 10)))
+#    plt.xlabel('axe')
+#    plt.ylabel('inertie')
+#    plt.title('Produit x terme : Variance expliquée par les premiers axes de la SVD')
+#    plt.savefig('inertie_svd_prod_term' + str(nb_composante) + '.png')
+#    
+#    #cumulative variance
+#    cumul = [variance_pt[0]]
+#    for i in range( 1 , len(variance_pt)):
+#        cumul.append(cumul[i-1] + variance_pt[i])
+#        
+#    plt.figure(figsize=(8,6))
+#    plt.plot(cumul)
+#    plt.xlabel('axe')
+#    plt.ylabel('variance')
+#    plt.title('Produit x terme : Variance cumulée des axes de la SVD')
+#    plt.savefig('var_cumulee_prod_term.png')
+#    
+#    #plot SVD
+#    plot_svd(svd_pt, 1, 2, 'svd_1_2_ProdTerm' + str(nb_composante) + '.png')
+#    plot_svd(svd_pt, 2, 3, 'svd_2_3_ProdTerm' + str(nb_composante) + '.png')
     
     
     
@@ -110,9 +150,9 @@ if __name__ == "__main__":
 #    ###########################################################################
 #    
 #
-#                ##############    Sans TF-IDF    ################
-#
-#    
+                ##############    Sans TF-IDF    ################
+
+    
 #    csr_rev = load_npz("matrices/prod_user_matrix.npz")
 #    
 #    clf_pu = TruncatedSVD(nb_composante)
@@ -128,8 +168,7 @@ if __name__ == "__main__":
 #    plt.xlabel('axe')
 #    plt.ylabel('inertie')
 #    plt.title('Produit x user : Variance expliquée par les premiers axes de la SVD')
-#    plt.savefig('inertie_svd_prod_user' + str(nb_composante) + '.png')
-#    
+#    plt.savefig('inertie_svd_prod_user' + str(nb_composante) + '.png')  
 #    
 #    #cumulative variance
 #    cumul = [variance_pu[0]]
