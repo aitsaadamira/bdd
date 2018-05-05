@@ -77,7 +77,7 @@ if __name__ == "__main__":
     file.write("Inertie : ")
     file.write(str(variance_pu[0])  + ' - ' +  str(variance_pu[1]))
     file.write("Inertie cumulée : ")
-    file.write(cumul[nb_composante-1])    
+    file.write(str(cumul[nb_composante-1])    )
     
     
                 ##############    Avec TF-IDF    ################
@@ -117,7 +117,7 @@ if __name__ == "__main__":
     file.write("Inertie : ")
     file.write(str(variance_pu_tf[0])  + ' - ' +  str(variance_pu_tf[1]))
     file.write("Inertie cumulée : ")
-    file.write(cumul_pu_tf[nb_composante-1])    
+    file.write(str(cumul_pu_tf[nb_composante-1])    )
     
     
     file.close()
