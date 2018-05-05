@@ -10,6 +10,8 @@ Created on Thu Mar 22 18:33:22 2018
 from scipy.sparse import load_npz
 from sklearn.decomposition import TruncatedSVD
 from sklearn.feature_extraction.text import TfidfTransformer
+import matplotlib
+matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
 
