@@ -73,7 +73,7 @@ if __name__ == "__main__":
     file.write("\n\n\n\n*******************************************************\n")
     file.write("\nproduit comp : \n")
     file.write("Inertie : ")
-    file.write(variance_comp[0:20])
+    file.write(str(variance_comp[0]) + ' - ' + str(variance_comp[1]))
     file.write("Inertie cumulée : ")
     file.write(cumul[nb_composante-1])  
     
@@ -112,7 +112,7 @@ if __name__ == "__main__":
     file = open("resultat_SVD.txt","a")
     file.write("\nproduit comp TF-IDF : \n")
     file.write("Inertie : ")
-    file.write(variance_comp_tf[0:20])
+    file.write(str(variance_comp_tf[0]) + ' - ' + str(variance_comp_tf[1]))
     file.write("Inertie cumulée : ")
     file.write(cumul_tf[nb_composante-1])  
     
