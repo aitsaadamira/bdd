@@ -11,7 +11,7 @@ from scipy.sparse import load_npz
 from sklearn.decomposition import TruncatedSVD
 from sklearn.feature_extraction.text import TfidfTransformer
 import matplotlib
-matplotlib.use("tkagg")
+matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
 
