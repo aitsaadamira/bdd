@@ -42,34 +42,40 @@ if __name__ == "__main__":
     svd_comp = clf_comp.fit_transform(csr_meta)
     variance_comp = sorted(clf_comp.explained_variance_ratio_, reverse=True) #[0.278, 0.0328, 0.0180, ...]
     
-    #plots inertie :
-    plt.figure(figsize=(15,9))
-    #plt.ylim((0 , 1))
-    indices = [x+1 for x in range(len(variance_comp))]
-    plt.bar(indices , variance_comp)
-    plt.xticks([1] + list(range(10, len(variance_comp)+1 , 10)))
-    plt.xlabel('axe')
-    plt.ylabel('inertie')
-    plt.title('Produit comp : Variance expliquée par les premiers axes de la SVD')
-    plt.savefig('inertie_svd_prod_comp' + str(nb_composante) + '.png')
+#    #plots inertie :
+#    plt.figure(figsize=(15,9))
+#    #plt.ylim((0 , 1))
+#    indices = [x+1 for x in range(len(variance_comp))]
+#    plt.bar(indices , variance_comp)
+#    plt.xticks([1] + list(range(10, len(variance_comp)+1 , 10)))
+#    plt.xlabel('axe')
+#    plt.ylabel('inertie')
+#    plt.title('Produit comp : Variance expliquée par les premiers axes de la SVD')
+#    plt.savefig('inertie_svd_prod_comp' + str(nb_composante) + '.png')
     
     #cumulative variance
     cumul = [variance_comp[0]]
     for i in range( 1 , len(variance_comp)):
         cumul.append(cumul[i-1] + variance_comp[i])
         
-    plt.figure(figsize=(8,6))
-    plt.plot(cumul)
-    plt.xlabel('axe')
-    plt.ylabel('variance')
-    plt.title('Produit comp : Variance cumulée des axes de la SVD')
-    plt.savefig('var_cumulee_prod_comp.png')
+#    plt.figure(figsize=(8,6))
+#    plt.plot(cumul)
+#    plt.xlabel('axe')
+#    plt.ylabel('variance')
+#    plt.title('Produit comp : Variance cumulée des axes de la SVD')
+#    plt.savefig('var_cumulee_prod_comp.png')
+#    
+#    #plot SVD
+#    plot_svd(svd_comp, 1, 2, 'svd_1_2_Prodcomp' + str(nb_composante) + '.png')
+#    plot_svd(svd_comp, 2, 3, 'svd_2_3_Prodcomp' + str(nb_composante) + '.png')
     
-    #plot SVD
-    plot_svd(svd_comp, 1, 2, 'svd_1_2_Prodcomp' + str(nb_composante) + '.png')
-    plot_svd(svd_comp, 2, 3, 'svd_2_3_Prodcomp' + str(nb_composante) + '.png')
-    
-    
+    file = open("resultat_SVD.txt","a")
+    file.write("\n\n\n\n*******************************************************\n")
+    file.write("\nproduit comp : \n")
+    file.write("Inertie : ")
+    file.write(variance_comp[0:20])
+    file.write("Inertie cumulée : ")
+    file.write(cumul[nb_composante-1])  
     
                 ##############    Avec TF-IDF    ################
     
@@ -79,16 +85,16 @@ if __name__ == "__main__":
     svd_tfidf_comp = clf_comp_tf.fit_transform(tf_idf_comp)
     variance_comp_tf = sorted(clf_comp_tf.explained_variance_ratio_, reverse=True) #[0.0128, 0.0078, 0.0056, ...]
     
-    #plots inertie :
-    plt.figure(figsize=(15,9))
-    #plt.ylim((0 , 1))
-    indices = [x+1 for x in range(len(variance_comp_tf))]
-    plt.bar(indices , variance_comp_tf)
-    plt.xticks([1] + list(range(10, len(variance_comp_tf)+1 , 10)))
-    plt.xlabel('axe')
-    plt.ylabel('inertie')
-    plt.title('Produit comp : Variance expliquée par les premiers axes de la SVD (tf-idf)')
-    plt.savefig('inertie_svd_prod_comp_tfidf' + str(nb_composante) + '.png')
+#    #plots inertie :
+#    plt.figure(figsize=(15,9))
+#    #plt.ylim((0 , 1))
+#    indices = [x+1 for x in range(len(variance_comp_tf))]
+#    plt.bar(indices , variance_comp_tf)
+#    plt.xticks([1] + list(range(10, len(variance_comp_tf)+1 , 10)))
+#    plt.xlabel('axe')
+#    plt.ylabel('inertie')
+#    plt.title('Produit comp : Variance expliquée par les premiers axes de la SVD (tf-idf)')
+#    plt.savefig('inertie_svd_prod_comp_tfidf' + str(nb_composante) + '.png')
     
     
     #cumulative variance
@@ -96,11 +102,28 @@ if __name__ == "__main__":
     for i in range( 1 , len(variance_comp_tf)):
         cumul_tf.append(cumul_tf[i-1] + variance_comp_tf[i])
         
-    plt.figure(figsize=(8,6))
-    plt.plot(cumul_tf)
-    plt.xlabel('axe')
-    plt.ylabel('variance')
-    plt.title('Produit comp : Variance cumulée des axes de la SVD (TF-IDF)')
-    plt.savefig('var_cumulee_prod_comp_tfidf' + str(nb_composante) + '.png')
+#    plt.figure(figsize=(8,6))
+#    plt.plot(cumul_tf)
+#    plt.xlabel('axe')
+#    plt.ylabel('variance')
+#    plt.title('Produit comp : Variance cumulée des axes de la SVD (TF-IDF)')
+#    plt.savefig('var_cumulee_prod_comp_tfidf' + str(nb_composante) + '.png')
+        
+    file = open("resultat_SVD.txt","a")
+    file.write("\nproduit comp TF-IDF : \n")
+    file.write("Inertie : ")
+    file.write(variance_comp_tf[0:20])
+    file.write("Inertie cumulée : ")
+    file.write(cumul_tf[nb_composante-1])  
+    
+    
+    file.close()
+    
+    
+    
+    
+    
+    
+    
         
     
