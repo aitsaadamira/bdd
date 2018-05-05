@@ -11,6 +11,7 @@ from scipy.sparse import load_npz
 from sklearn.decomposition import TruncatedSVD
 from sklearn.feature_extraction.text import TfidfTransformer
 import matplotlib.pyplot as plt
+plt.use("Agg")
 
 
 def plot_svd (svd, axe1, axe2, filename):
