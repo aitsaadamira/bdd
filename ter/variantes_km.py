@@ -223,17 +223,17 @@ if __name__ == "__main__":
     nb_clusters = 200
     nb_init = 5
     
-    print("prod_term")
+#    print("prod_term")
     
     ###########################################################################
-    #                             PROD x TERM                                 #
-    
-    prod_term = load_npz("matrices/prod_term_matrix.npz")
-#
-    kmeans_exec(matrix = prod_term, nb_clusters = nb_clusters, nb_init = nb_init, fun = kmeans, fun_name = "kmeans" , mat_name = "prod_term")
-    kmeans_exec(matrix = prod_term, nb_clusters = nb_clusters, nb_init = nb_init, fun = sphe_kmeans, fun_name = "sphe_kmeans" , mat_name = "prod_term")
+#    #                             PROD x TERM                                 #
 #    
-    
+#    prod_term = load_npz("matrices/prod_term_matrix.npz")
+##
+#    kmeans_exec(matrix = prod_term, nb_clusters = nb_clusters, nb_init = nb_init, fun = kmeans, fun_name = "kmeans" , mat_name = "prod_term")
+#    kmeans_exec(matrix = prod_term, nb_clusters = nb_clusters, nb_init = nb_init, fun = sphe_kmeans, fun_name = "sphe_kmeans" , mat_name = "prod_term")
+##    
+#    
     print("prod_user")
     
     ###########################################################################
