@@ -239,7 +239,7 @@ if __name__ == "__main__":
     ###########################################################################
     #                             PROD x USER                                 #
     
-    prod_user = load_npz("prod_user_matrix.npz")
+    prod_user = load_npz("matrices/prod_user_matrix.npz")
 
     kmeans_exec(matrix = prod_user, nb_clusters = nb_clusters, nb_init = nb_init, fun = kmeans, fun_name = "kmeans" , mat_name = "prod_user")
     kmeans_exec(matrix = prod_user, nb_clusters = nb_clusters, nb_init = nb_init, fun = sphe_kmeans, fun_name = "sphe_kmeans" , mat_name = "prod_user")
@@ -249,7 +249,7 @@ if __name__ == "__main__":
 #    ###########################################################################
 #    #                          PROD x PROD (sub)                              #
 #    
-#    csr_sub = load_npz("csr_sub.npz")
+#    csr_sub = load_npz("matrices/csr_sub.npz")
 #
 #    kmeans_exec(matrix = csr_sub, nb_clusters = nb_clusters, nb_init = nb_init, fun = kmeans, fun_name = "kmeans" , mat_name = "sub_mat")
 #    kmeans_exec(matrix = csr_sub, nb_clusters = nb_clusters, nb_init = nb_init, fun = sphe_kmeans, fun_name = "sphe_kmeans" , mat_name = "sub_mat")
@@ -259,7 +259,7 @@ if __name__ == "__main__":
 #    ###########################################################################
 #    #                          PROD x PROD (comp)                             #
 #    
-#    csr_comp = load_npz("csr_comp.npz")
+#    csr_comp = load_npz("matrices/csr_comp.npz")
 #
 #    kmeans_exec(matrix = csr_comp, nb_clusters = nb_clusters, nb_init = nb_init, fun = kmeans, fun_name = "kmeans" , mat_name = "comp_mat")
 #    kmeans_exec(matrix = csr_comp, nb_clusters = nb_clusters, nb_init = nb_init, fun = sphe_kmeans, fun_name = "sphe_kmeans" , mat_name = "comp_mat")
