@@ -11,6 +11,9 @@ from scipy import sparse
 from coclust.coclustering import CoclustInfo
 from coclust.visualization import plot_delta_kl
 from pickle import dump
+import matplotlib
+matplotlib.use("Agg")
+import matplotlib.pyplot as plt
 
 from os import chdir
 chdir("/home/mira/TAF/TER/code")
