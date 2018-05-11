@@ -15,8 +15,6 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
-from os import chdir
-chdir("/home/mira/TAF/TER/code")
 
 def coclustering(X, n_row_clusters, n_col_clusters, nb_ex):
     """
